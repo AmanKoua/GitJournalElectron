@@ -1,15 +1,21 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+import { registerIpcs } from './registerIpcs';
+
+const WIDTH = 1080;
+const HEIGHT = 1080;
+
+let mainWindow : BrowserWindow;
 
 function createWindow(): void {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+  mainWindow = new BrowserWindow({
+    width: WIDTH,
+    height: HEIGHT,
     show: false,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? {} : {}),
+    // ...(process.platform === 'linux' ? {} : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
@@ -32,6 +38,10 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
+  // Register IPCs
+  registerIpcs(mainWindow)
+
 }
 
 // This method will be called when Electron has finished

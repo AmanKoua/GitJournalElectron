@@ -1,8 +1,12 @@
 function App(): React.JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+  const ipcHandle = (): void => window.electron.ipcRenderer.send('pullRepoData')
+  window.electron.ipcRenderer.on("pullRepoDataResponse", (_, data) => {console.log(data)})
 
   return (
-    <p>initial stuff</p>
+    <button onClick={()=>{
+      ipcHandle()
+      console.log("lmao")
+    }}>initial stuff</button>
   )
 }
 
