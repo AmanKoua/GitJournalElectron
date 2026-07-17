@@ -1,11 +1,18 @@
+import { pullRepoData } from "./ipcService"
+
 function App(): React.JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('pullRepoData')
-  window.electron.ipcRenderer.on("pullRepoDataResponse", (_, data) => {console.log(data)})
+  
+  const pullTest = async () => {
+
+    pullRepoData().then(()=>{
+      console.log("success pulling data")
+    }).catch(()=>{console.log("failed pulling repo data")})
+
+  }
 
   return (
     <button onClick={()=>{
-      ipcHandle()
-      console.log("lmao")
+      pullTest()
     }}>initial stuff</button>
   )
 }

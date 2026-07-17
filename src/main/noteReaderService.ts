@@ -4,6 +4,7 @@ import {assert} from "./utils"
 
 export const pullRemoteChanges = () : Promise<boolean> => {
 
+    console.log("pulling remote data changes!")
     const gitJournalDataRepoPath = getGitJournalDataRepoPath();
 
     return new Promise((res,rej) => {
