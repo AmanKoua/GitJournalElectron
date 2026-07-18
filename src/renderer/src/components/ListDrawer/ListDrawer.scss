@@ -1,0 +1,19 @@
+.list-drawer{
+    height: 95vh;
+    width: 20rem;
+    background-color: red;
+
+    &__header {
+        height: 2.5rem;
+        background-color: gray;
+        display: flex;
+
+        p {
+            height: max-content;
+            width: max-content;
+            margin: auto;
+        }
+
+    }
+
+}

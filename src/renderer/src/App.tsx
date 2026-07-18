@@ -1,4 +1,5 @@
 import { Header } from "./components/Header/Header"
+import { ListDrawer } from "./components/ListDrawer/ListDrawer"
 import { pullRepoData, readDataRepo } from "./ipcService"
 
 function App(): React.JSX.Element {
@@ -16,7 +17,12 @@ function App(): React.JSX.Element {
   // }
 
   return (
+    <>
     <Header/>
+    <main>
+      <ListDrawer/>
+    </main>
+    </>
   )
 }
 

@@ -3,7 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { registerIpcs } from './registerIpcs';
 
-const WIDTH = 1080;
+const WIDTH = 1400;
 const HEIGHT = 1080;
 
 let mainWindow : BrowserWindow;
