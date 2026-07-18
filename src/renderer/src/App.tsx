@@ -1,4 +1,4 @@
-import { pullRepoData } from "./ipcService"
+import { pullRepoData, readDataRepo } from "./ipcService"
 
 function App(): React.JSX.Element {
   
@@ -10,9 +10,13 @@ function App(): React.JSX.Element {
 
   }
 
+  const readDataRepoBtn = async () => {
+    console.log(await readDataRepo([]))
+  }
+
   return (
     <button onClick={()=>{
-      pullTest()
+      readDataRepoBtn()
     }}>initial stuff</button>
   )
 }

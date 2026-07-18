@@ -31,14 +31,32 @@ export const pullRepoData = (): Promise<void> =>  {
 
 }
 
-const sleep = (ms : number) : Promise<void> => {
+export const readDataRepo = (subPath: string[]): Promise<string[]> =>  {
 
-    return new Promise((res,_) => {
+    return new Promise((res,rej) => {
 
-        setTimeout(()=>{
-            res()
-        },
-        ms)
+        let response : string[];
+        let pollTime = 0;
+        let waitTime = 100;
+
+        window.electron.ipcRenderer.on("readDataRepoResponse", (_, data : string[]) => {response = data})
+        window.electron.ipcRenderer.send('readDataRepo', subPath);
+
+        const pollInterval = setInterval(()=>{
+
+            if (response){
+                res(response);
+                clearInterval(pollInterval);
+            }
+
+            if (pollTime >= DEFAULT_TIMEOUT) {
+                rej()
+                clearInterval(pollInterval);
+            }
+
+            pollTime += waitTime
+
+        },waitTime)
 
     })
 
